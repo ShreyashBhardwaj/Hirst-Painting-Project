@@ -22,7 +22,6 @@ This Python script generates a **Hirst-style painting** using the `turtle` modul
 
 ## Code Explanation
 ```python
-import turtle
 from turtle import Turtle, Screen
 import random
 
