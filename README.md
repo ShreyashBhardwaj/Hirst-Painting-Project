@@ -70,6 +70,10 @@ for _ in range(canvas_width + 1):
 
 screen.exitonclick()
 ```
+## Output Example
+Here is an example of the generated Hirst-style painting:
+
+![Hirst Painting Output](output.png)
 
 ## How to Run the Script
 1. Copy the code into a Python file (e.g., `hirst_painting.py`).
