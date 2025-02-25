@@ -19,53 +19,41 @@ screen = Screen()
 # print(rgb_colors)
 #Ensures that turtle module takes color as integer from 1-255. Normally it is in float
 turtle.colormode(255)
-#All the colors extracted from the colorgram module
+
+# List of dark colors
 colors = [
-    [150, 30, 30],    # Dark Red
-    [20, 80, 20],     # Deep Green
-    [30, 30, 150],    # Dark Blue
-    [100, 40, 150],   # Dark Purple
-    [160, 90, 20],    # Brownish Orange
-    [50, 50, 50],     # Dark Gray
-    [90, 20, 100],    # Deep Magenta
-    [10, 60, 90],     # Dark Teal
-    [130, 70, 20],    # Rust
-    [80, 0, 0]        # Very Dark Red
+    [150, 30, 30], [20, 80, 20], [30, 30, 150],
+    [100, 40, 150], [160, 90, 20], [50, 50, 50],
+    [90, 20, 100], [10, 60, 90], [130, 70, 20],
+    [80, 0, 0]
 ]
 
+# Set canvas size and world coordinates
+canvas_width = 100
+canvas_height = 100
+screen.screensize(canvas_width, canvas_height)
+screen.setworldcoordinates(-canvas_width/2, -canvas_height/2, canvas_width/2, canvas_height/2)
 
-#Setting Canvas_width and Height
-canvas_width=100
-canvas_height=100
-
-#Setting Screen size using canvas height and width
-screen.screensize(canvas_width,canvas_height)
-screen.setworldcoordinates(-canvas_width/2,-canvas_height/2,canvas_width/2,canvas_height/2)
-
-#setting the pensize and speed
+# Turtle settings
+tim.pensize(20)
 tim.speed("fastest")
-tim.hideturtle()
 
-#setting the distance for teleport
-teleport_distance=10
+teleport_distance = 10
 
+# Set starting coordinates
+x, y = 5 - (canvas_width / 2), 5 - (canvas_height / 2)
+tim.teleport(x, y)
 
-#setting the start coordinates -45 -45
-x,y=5-(canvas_width/2),5-(canvas_height/2)
+# Loop to generate dots
+for _ in range(canvas_width + 1):
+    color = tuple(random.choice(colors))
+    tim.dot(20, color)
 
-#Teleporting to the starting coordinates
-tim.teleport(x,y)
+    if x > (canvas_width / 2):  # If it reaches the end of the row
+        y += teleport_distance  # Move to the next row
+        x = -(canvas_width / 2) + 5  # Reset X position
 
-#The loop that will create Hirst Painting
-for _ in range(canvas_width+1):
-    color=tuple(random.choice(colors))
-    tim.dot(20,color)
-
-    if x > (canvas_width/2):
-        y += teleport_distance
-        x = 5-(canvas_width/2)
-
-    tim.teleport(x,y)
-    x+=teleport_distance
+    tim.teleport(x, y)
+    x += teleport_distance
 
 screen.exitonclick()
